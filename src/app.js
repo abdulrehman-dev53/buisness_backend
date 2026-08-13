@@ -42,10 +42,21 @@ if (process.env.NODE_ENV !== 'test') {
 app.use(apiLimiter);
 
 // --- Health check ---
-app.get('/health', (req, res) => {
-  res.status(200).json({ success: true, message: 'BizPilot AI backend is running' });
+// --- Root route ---
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'BizPilot AI API is running 🚀'
+  });
 });
 
+// --- Health check ---
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'BizPilot AI backend is running'
+  });
+});
 // --- API routes ---
 app.use('/api/auth', authRoutes);
 app.use('/api/business', businessRoutes);
